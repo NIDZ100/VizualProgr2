@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
+
 namespace Lab2.DataAccess
 {
     public class OwnerDbContext : DbContext
