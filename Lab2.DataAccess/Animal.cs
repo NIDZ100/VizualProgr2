@@ -20,6 +20,6 @@ namespace Lab2.DataAccess
         [StringLength(250)]
         public string Description { get; set; }
         public Owner Owner { get; set; }
-        
+        public Passport Passport { get; set; }
     }
 }

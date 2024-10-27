@@ -7,6 +7,7 @@ namespace Lab2.DataAccess
     {
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Animal> Animals { get; set; }
+        public DbSet<Passport> Passport { get; set; }
         public OwnerDbContext()
         {
 
