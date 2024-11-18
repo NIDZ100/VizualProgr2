@@ -6,18 +6,45 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.Input;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace Lab3.WpfApplication.ViewModels
 {
-    public class MainWindowViewModel: ObservableObject
+    public class MainWindowViewModel: ObservableObject , INotifyPropertyChanged 
     {
+        private List<Animal> _animals = new List<Animal>();
+        private Owner _selectedOwner;
+
+        public List<Animal> Animals
+        {
+            get
+            {
+                return _animals;
+            }
+            set
+            {
+                _animals = value;
+                OnPropertyChanged();
+            }
+        }
        
-            private OwnerDbContext _db;
+        public Owner SelectedOwner { get; set; } 
+        private OwnerDbContext _db;
 
-
-            public MainWindowViewModel()
+        public void LoadAnimals()
+        {
+            if (SelectedOwner == null)
+            {
+                return;
+            }
+            Animals = _db.Animals.Where(o => o.Owner.Id == SelectedOwner.Id).ToList();
+        }
+        public MainWindowViewModel()
             {
                 _db = new OwnerDbContext();
+                SelectOwnerCommand = new RelayCommand(LoadAnimals);
             }
             private Owner[] _owners;
             public Owner[] Owners => _owners;
@@ -26,7 +53,16 @@ namespace Lab3.WpfApplication.ViewModels
             {
                 _owners = _db.Owners.ToArray();
             }
+        public ICommand SelectOwnerCommand { get; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+        
+
     }
+}
 
 
