@@ -7,47 +7,62 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewModels="clr-namespace:Lab3.WpfApplication.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Window.DataContext>
         <viewModels:MainWindowViewModel/>
     </Window.DataContext>
 
     <Grid>
-        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
-            <DataGrid AutoGenerateColumns="False" Grid.Row="1" Grid.ColumnSpan="3"
-              x:Name="LstStudents"
-              d:ItemsSource="{d:SampleData ItemCount=5}"
-              ItemsSource="{Binding Owners, Mode=OneWay}"
-              SelectionMode="Single"
-              CanUserAddRows="False"
-              IsReadOnly="True"
-              SelectedItem= "{Binding SelectedOwner, Mode=TwoWay }" >
+        <StackPanel Orientation="Vertical" Margin="10">
+          
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <Label Content="Description:" VerticalAlignment="Center" />
+                <TextBox x:Name="TbxSearchDescription" Width="200" Margin="5,0" 
+                         Text="{Binding SearchDescription, UpdateSourceTrigger=PropertyChanged}" />
+                <Button x:Name="BtnSearch" Command="{Binding SearchCommand}" Content="Search" Margin="5,0" />
+
+                <Label Content="Animal ID Range:" VerticalAlignment="Center" Margin="10,0,0,0" />
+                <ComboBox x:Name="CmbIdRange" Width="150" Margin="5,0"
+                          ItemsSource="{Binding IdRanges}" 
+                          SelectedItem="{Binding SelectedIdRange, Mode=TwoWay}" />
+            </StackPanel>
+
+           
+            <Label Content="Owners:" FontWeight="Bold" Margin="5"/>
+            <DataGrid AutoGenerateColumns="False" 
+                      ItemsSource="{Binding Owners}" 
+                      SelectedItem="{Binding SelectedOwner, Mode=TwoWay}" 
+                      IsReadOnly="True" Margin="5" Height="150">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Uzvards" Width="100" Binding="{Binding Surname}" />
-                    <DataGridTextColumn Header="Augums" Width="150" Binding="{Binding Height}" />
+                    <DataGridTextColumn Header="Surname" Width="150" Binding="{Binding Surname}" />
+                    <DataGridTextColumn Header="Height" Width="150" Binding="{Binding Height}" />
                 </DataGrid.Columns>
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding SelectOwnerCommand}" />
-
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-
             </DataGrid>
-            <Label>Animals:</Label>
-            <DataGrid AutoGenerateColumns="False" Grid.Row="1" Grid.ColumnSpan="4"
-          x:Name="LstAnimals"
-          d:ItemsSource="{d:SampleData ItemCount=5}"
-          ItemsSource="{Binding Animals, Mode=OneWay}"
-          SelectionMode="Single"
-          CanUserAddRows="False"
-          IsReadOnly="True">
+            <Button Content="Delete Selected Owner" Command="{Binding DeleteOwnerCommand}" Margin="5" />
+
+            <StackPanel Orientation="Vertical" Margin="5">
+                <Label Content="Edit Owner:" FontWeight="Bold" Margin="5"/>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="Surname:" VerticalAlignment="Center" />
+                    <TextBox Width="150" Margin="5,0" 
+                             Text="{Binding EditableOwner.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Label Content="Height:" VerticalAlignment="Center" />
+                    <TextBox Width="150" Margin="5,0" 
+                             Text="{Binding EditableOwner.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <Button Content="Update Owner" Command="{Binding UpdateOwnerCommand}" Margin="5" />
+            </StackPanel>
+
+            
+            <Label Content="Animals:" FontWeight="Bold" Margin="5"/>
+            <DataGrid AutoGenerateColumns="False" 
+                      ItemsSource="{Binding Animals}" 
+                      IsReadOnly="True" Margin="5" Height="150">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="AnimalId" Width="100" Binding="{Binding Id}" />
-                    <DataGridTextColumn Header="Animal" Width="150" Binding="{Binding Description}" />
+                    <DataGridTextColumn Header="Description" Width="200" Binding="{Binding Description}" />
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-
     </Grid>
 </Window>
