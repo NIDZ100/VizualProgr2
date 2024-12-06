@@ -10,7 +10,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab2.Console", "Lab2.Consol
 		{80F68016-5207-4B5C-AACE-A1F8143ED2CC} = {80F68016-5207-4B5C-AACE-A1F8143ED2CC}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3.WpfApplication", "Lab3.WpfApplication\Lab3.WpfApplication.csproj", "{527A3C27-6652-4C9F-B4C3-BD72121A7A3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab3.WpfApplication", "Lab3.WpfApplication\Lab3.WpfApplication.csproj", "{527A3C27-6652-4C9F-B4C3-BD72121A7A3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab4.WebAPI", "Lab4.WebAPI\Lab4.WebAPI.csproj", "{E8368B50-A60D-4979-86CE-D74E837A55B6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{80F68016-5207-4B5C-AACE-A1F8143ED2CC} = {80F68016-5207-4B5C-AACE-A1F8143ED2CC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +35,10 @@ Global
 		{527A3C27-6652-4C9F-B4C3-BD72121A7A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{527A3C27-6652-4C9F-B4C3-BD72121A7A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{527A3C27-6652-4C9F-B4C3-BD72121A7A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8368B50-A60D-4979-86CE-D74E837A55B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8368B50-A60D-4979-86CE-D74E837A55B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8368B50-A60D-4979-86CE-D74E837A55B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8368B50-A60D-4979-86CE-D74E837A55B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
