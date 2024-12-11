@@ -31,6 +31,7 @@ namespace Lab2.DataAccess
         [StringLength(250)]
         public string Job { get; set; }
 
+
         public List<Animal> Animals { get; set; } = new();
     }
 }
